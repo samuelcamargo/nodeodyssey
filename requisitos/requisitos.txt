@@ -1,4 +1,5 @@
 ##Node Odyssey
++ feito // - a fazer
 
 #usuarios
 + Criar endpoint cadastrar usuario
@@ -9,7 +10,12 @@
 #personagem
 + Criar endpoint cadastrar um personagem
 + Criar endpoint buscar dados de um personagem
-- Criar relacionamento entre personagem e usuario
++ Criar relacionamento entre personagem e usuario
+
+#monstros
+- Criar endpoint cadastrar usuarmonstrosio
+- Criar endpoint buscar dados de um monstros
+- Criar endpoint listar todos os monstros 
 
 #lutas
 - Criar endpoint onde um usuario pode buscar uma lutas
