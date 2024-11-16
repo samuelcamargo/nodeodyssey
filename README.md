@@ -1,7 +1,8 @@
+
 # NodeOdyssey
 
 ### Descrição
-NodeOdyssey é um RPG basico, desenvolvido com **Node.js**, **TypeScript**, e **TypeORM**, usando **SQLite** como banco de dados. 
+NodeOdyssey é um RPG básico, desenvolvido com **Node.js**, **TypeScript**, e **TypeORM**, usando **SQLite** como banco de dados. 
 O projeto inclui a implementação de entidades, relacionamentos e endpoints RESTful para manipulação de personagens e usuários.
 
 ---
@@ -10,8 +11,9 @@ O projeto inclui a implementação de entidades, relacionamentos e endpoints RES
 
 ### 1. Entidades e Relacionamentos
 - **Character**:
-  - Atributos como `name`, `level`, `attack`, `defense`, `health`, `agility` e `role`.
+  - Atributos como `name`, `level`, `attack`, `defense`, `health`, `agility`, `experience` e `role`.
   - Relacionado a `User` via `@ManyToOne`.
+  - Experiência acumulativa com cálculo de nível baseado em experiência total.
 - **User**:
   - Atributos como `name`, `email` e `password`.
   - Relacionado a `Character` via `@OneToMany`.
@@ -26,14 +28,16 @@ O projeto inclui a implementação de entidades, relacionamentos e endpoints RES
   - Lista todos os personagens com os dados completos do usuário associado (excluindo o campo `password`).
 - `GET /characters/:id`:
   - Busca um personagem específico pelo ID, incluindo os dados do usuário associado.
+- `PATCH /characters/:id/:exp`:
+  - Atualiza a experiência do personagem e recalcula o nível com base na experiência acumulada.
 
 #### **Users**
 - `POST /users`:
-  - Cria um novo usuario associado a um usuário.
+  - Cria um novo usuário.
 - `GET /users`:
-  - Lista todos os usuarios com os dados completos do usuário associado (excluindo o campo `password`).
+  - Lista todos os usuários com os dados completos (excluindo o campo `password`).
 - `GET /users/:id`:
-  - Busca um usuario específico pelo ID (excluindo o campo `password`)
+  - Busca um usuário específico pelo ID (excluindo o campo `password`).
 
 ---
 
@@ -123,6 +127,7 @@ Você pode testar os endpoints utilizando ferramentas como:
 Exemplo de endpoints disponíveis:
 - **GET /characters**: Lista todos os personagens.
 - **POST /characters**: Cria um novo personagem.
+- **PATCH /characters/:id/:exp**: Atualiza a experiência de um personagem.
 
 ---
 
