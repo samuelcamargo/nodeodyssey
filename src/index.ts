@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes";
+import characterRoutes from "./routes/characterRoutes";
 import { AppDataSource } from "./data-source";
 
 dotenv.config();
@@ -15,6 +16,7 @@ AppDataSource.initialize()
     console.log("Database connected");
 
     app.use("/users", userRoutes);
+    app.use("/characters", characterRoutes);
 
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`);
