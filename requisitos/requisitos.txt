@@ -25,3 +25,5 @@
 - Criar segurança JWT para o login
 - Integrar o Sweeger para uma documentação do endpoints
 - Criar estrutura de testes jest ou SuperTest
++ Criar enum de roles (guerreiro,mago,arqueiro)
++ Criar status personagem (ataque, defesa, vida, agilidade)

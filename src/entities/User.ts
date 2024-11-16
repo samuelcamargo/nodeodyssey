@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Character } from "./Character";
 
 @Entity()
 export class User {
@@ -11,6 +12,9 @@ export class User {
   @Column({ unique: true })
   login!: string;
 
-  @Column()
+  @Column({ select: false })
   senha!: string;
+
+  @OneToMany(() => Character, (character: { user: any; }) => character.user)
+  characters!: Character[];
 }
