@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import { GiveExperienceToCharacter } from "../use-cases/GiveExperienceToCharacter";
+import { TypeORMCharacterRepository } from "../repositories/TypeORMCharacterRepository";
 import { AppDataSource } from "../data-source";
 import { Character } from "../entities/Character";
 import { Role } from "../enum/RoleEnum"
@@ -82,5 +84,34 @@ export const createCharacters = async (req: Request, res: Response): Promise<voi
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error creating character" });
+  }
+};
+
+export const giveExperience = async (req: Request, res: Response): Promise<void> => {
+  const { id_user, exp } = req.params; // ID do personagem e experiência como parâmetros
+
+  try {
+    // Validação dos parâmetros
+    if (!id_user || isNaN(Number(id_user))) {
+      res.status(400).json({ message: "Invalid character ID. It must be a number." });
+      return;
+    }
+
+    if (!exp || isNaN(Number(exp))) {
+      res.status(400).json({ message: "Invalid experience value. It must be a number." });
+      return;
+    }
+    
+    // Repositório e caso de uso
+    const ormRepository = AppDataSource.getRepository(Character);
+    const characterRepository = new TypeORMCharacterRepository(ormRepository);
+    const giveExperienceToCharacter = new GiveExperienceToCharacter(characterRepository);
+
+    const updatedCharacter = await giveExperienceToCharacter.execute(Number(id_user), Number(exp));
+
+    res.json(updatedCharacter);
+  } catch (error: any) {
+    console.error(error);
+    res.status(400).json({ message: error.message });
   }
 };
