@@ -18,6 +18,12 @@ export class Character {
 
   @Column({
     type: "int",
+    default:0
+  })
+  experience!: number;
+
+  @Column({
+    type: "int",
     default:10
   })
   attack!: number;

@@ -13,8 +13,8 @@
 + Criar relacionamento entre personagem e usuario
 
 #monstros
-- Criar endpoint cadastrar usuarmonstrosio
-- Criar endpoint buscar dados de um monstros
+- Criar endpoint cadastrar monstros
+- Criar endpoint buscar dados de um monstros (id, name,level,attack,defense,health,agility,experience)
 - Criar endpoint listar todos os monstros 
 
 #lutas
