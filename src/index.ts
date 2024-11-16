@@ -1,14 +1,20 @@
-import express, { Request, Response } from "express";
+import express from "express";
+import dotenv from "dotenv";
+import userRoutes from "./routes/userRoutes";
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; 
 
 app.use(express.json());
 
-app.get("/", (req: Request, res: Response) => {
- res.send("Hello, Express with TypeScript!");
+// Rota principal
+app.get("/", (req, res) => {
+  res.send("NodeOdyssey Running.");
 });
 
+// Registra as rotas do usuário
+app.use("/api", userRoutes);
+
 app.listen(PORT, () => {
- console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
