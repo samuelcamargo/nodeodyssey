@@ -1,10 +1,15 @@
 ##Node Odyssey
 
 #usuarios
-- Criar endpoint cadastrar usuario
++ Criar endpoint cadastrar usuario
 - Criar endpoint login
-- Criar endpoint buscar dados de um usuario
-- Criar endpoint listar todos os usuarios
++ Criar endpoint buscar dados de um usuario
++ Criar endpoint listar todos os usuarios
+
+#personagem
++ Criar endpoint cadastrar um personagem
++ Criar endpoint buscar dados de um personagem
+- Criar relacionamento entre personagem e usuario
 
 #lutas
 - Criar endpoint onde um usuario pode buscar uma lutas
@@ -16,7 +21,7 @@
 
 #metas
 - Adicionar Eslint
-- Criar estrutura de banco de dados SQLite + TypeORM
++ Criar estrutura de banco de dados SQLite + TypeORM
 - Criar segurança JWT para o login
 - Integrar o Sweeger para uma documentação do endpoints
 - Criar estrutura de testes jest ou SuperTest
