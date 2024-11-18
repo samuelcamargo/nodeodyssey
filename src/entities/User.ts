@@ -15,6 +15,6 @@ export class User {
   @Column({ select: false })
   senha!: string;
 
-  @OneToMany(() => Character, (character: { user: any; }) => character.user)
+  @OneToMany(() => Character, (character) => character.user)
   characters!: Character[];
 }

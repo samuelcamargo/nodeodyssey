@@ -9,5 +9,5 @@ export const AppDataSource = new DataSource({
   synchronize: false, // Usaremos migrações
   logging: true,
   entities: [User, Character],
-  migrations: ["src/migrations/*.ts"],
+  migrations: ['src/migrations/*.ts'],
 });
