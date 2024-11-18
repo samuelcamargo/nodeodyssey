@@ -23,17 +23,23 @@ export class LevelUpService {
     while (character.experience >= requiredXP) {
       character.experience -= requiredXP; // Subtrai a experiência necessária para o próximo nível
       character.level += 1; // Incrementa o nível
+
+      const roleKey = character.role.toLowerCase() as keyof typeof LevelUpService.classModifiers;
+      if (roleKey in LevelUpService.classModifiers) {
+          const modifiers = LevelUpService.classModifiers[roleKey];
+          character.attack += modifiers.attack;
+          character.defense += modifiers.defense;
+          character.health += modifiers.health; // vida atual
+          character.max_health += modifiers.health; // vida maxima
+          character.agility += modifiers.agility;
+      }
+      
+      //Recupera a Vida ao passar de level
+      character.health = character.max_health;
+
     }
 
-    const roleKey = character.role.toLowerCase() as keyof typeof LevelUpService.classModifiers;
-    if (roleKey in LevelUpService.classModifiers) {
-        const modifiers = LevelUpService.classModifiers[roleKey];
-        character.attack += modifiers.attack;
-        character.defense += modifiers.defense;
-        character.health += modifiers.health;
-        character.agility += modifiers.agility;
-    }
-
+  
     return character;
 }
 }

@@ -44,6 +44,12 @@ export class Character {
     type: "int",
     default:10
   })
+  max_health!: number;
+
+  @Column({
+    type: "int",
+    default:10
+  })
   agility!: number;
 
   @Column({
