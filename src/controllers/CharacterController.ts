@@ -48,7 +48,7 @@ export const getCharactersById = async (req: Request, res: Response): Promise<vo
 
 
 export const createCharacters = async (req: Request, res: Response): Promise<void> => {
-  const { name, attack, defense, health, agility, level, role, id_user } = req.body;
+  const { name, attack, defense, health, max_health, agility, level, role, id_user } = req.body;
 
   // Validação do papel (role)
   if (!Object.values(Role).includes(role)) {
@@ -73,6 +73,7 @@ export const createCharacters = async (req: Request, res: Response): Promise<voi
       attack,
       defense,
       health,
+      max_health,
       agility,
       level,
       role,

@@ -6,7 +6,8 @@ export interface ICharacter {
     experience: number;
     attack: number;
     defense: number;
-    health: number;
+    health: number; // vida atual
+    max_health: number; // vida maxima
     agility: number;
     role: string;
     id_user: number; // Relacione sempre com o User
