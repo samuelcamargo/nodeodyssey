@@ -1,15 +1,14 @@
-import { Character } from "../entities/Character";
+import { ICharacter } from "../interfaces/Character";
 import { LevelUpService } from "./LevelUpService";
 
 export class ExperienceService {
-  // Método para adicionar experiência e aplicar level-up, se necessário
-  static addExperience(character: Character, experience: number): Character {
-    // Adiciona experiência
+  static addExperience(character: ICharacter, experience: number): ICharacter {
+    // Atualiza diretamente o objeto character
     character.experience += experience;
 
-    // Verifica e aplica level-up
+    // Aplica o level up se necessário
     LevelUpService.levelUpIfNeeded(character);
 
-    return character;
+    return character; // Retorna o próprio character modificado
   }
 }

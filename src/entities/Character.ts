@@ -53,7 +53,11 @@ export class Character {
   })
   role!: string;
 
-  @ManyToOne(() => User, (user) => user.characters, { eager: true }) // 'eager: true' carrega os dados do User automaticamente
-  @JoinColumn({ name: "id_user" }) // Relaciona com a coluna 'id_user' no banco de dados
+  @Column({ nullable: false })
+  id_user!: number; // 'id_user' também deve ser obrigatório
+
+  @ManyToOne(() => User, (user) => user.characters, { eager: true })
+  @JoinColumn({ name: "id_user" })
   user!: User;
+
 }

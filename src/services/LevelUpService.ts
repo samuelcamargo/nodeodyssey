@@ -1,4 +1,5 @@
 import { Character } from "../entities/Character";
+import { ICharacter } from "../interfaces/Character";
 
 export class LevelUpService {
   // Regras de crescimento por classe
@@ -16,24 +17,23 @@ export class LevelUpService {
   }
 
   // Função para verificar e executar o Level-Up
-  static levelUpIfNeeded(character: Character): Character {
+  static levelUpIfNeeded(character: ICharacter): ICharacter {
     const requiredXP = LevelUpService.calculateExperienceForNextLevel(character.level);
 
     while (character.experience >= requiredXP) {
-      character.experience -= requiredXP; // Subtrai o XP necessário
+      character.experience -= requiredXP; // Subtrai a experiência necessária para o próximo nível
       character.level += 1; // Incrementa o nível
-      
-      // Aumentar os atributos com base na classe
-      const modifiers = LevelUpService.classModifiers[character.role.toLowerCase() as keyof typeof LevelUpService.classModifiers];
-      if (modifiers) {
+    }
+
+    const roleKey = character.role.toLowerCase() as keyof typeof LevelUpService.classModifiers;
+    if (roleKey in LevelUpService.classModifiers) {
+        const modifiers = LevelUpService.classModifiers[roleKey];
         character.attack += modifiers.attack;
         character.defense += modifiers.defense;
         character.health += modifiers.health;
         character.agility += modifiers.agility;
-      }
-
     }
 
     return character;
-  }
+}
 }
