@@ -1,6 +1,6 @@
 import { Character } from "../entities/Character";
 import { IMonster } from "../interfaces/Monster";
-import { ExperienceService } from "../services/ExperienceService";
+import { ExperienceService } from "./ExperienceService";
 
 export class BattleSystem {
     static resolveBattle(

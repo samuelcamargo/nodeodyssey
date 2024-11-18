@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { battle } from '../controllers/BattleSystem';
+import { battleRandon, battle } from '../controllers/BattleSystem';
 
 const router = Router();
 
-router.patch("/:characterId/:monsterId",battle);
+router.patch("/:characterId",battleRandon); // randon batle
+router.patch("/:characterId/:monsterId",battle); // batle especific
 
 export default router;
