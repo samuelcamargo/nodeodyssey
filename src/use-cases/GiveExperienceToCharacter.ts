@@ -1,6 +1,6 @@
 import { Character } from "../entities/Character";
 import { CharacterRepository } from "../repositories/CharacterRepository";
-import { LevelUpService } from "../services/LevelUpService";
+import { ExperienceService } from "../services/ExperienceService";
 
 export class GiveExperienceToCharacter {
   constructor(private characterRepository: CharacterRepository) {}
@@ -12,11 +12,8 @@ export class GiveExperienceToCharacter {
       throw new Error("Character not found");
     }
 
-    // Acumular experiência
-    character.experience += experience;
-
-    // Verificar e aplicar Level Up
-    LevelUpService.levelUpIfNeeded(character);
+    // Adicionar experiência e aplicar level-up
+    ExperienceService.addExperience(character, experience);
 
     // Salvar no repositório
     await this.characterRepository.save(character);
