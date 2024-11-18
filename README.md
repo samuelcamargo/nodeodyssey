@@ -41,6 +41,11 @@ O projeto inclui a implementação de entidades, relacionamentos e endpoints RES
 
 ---
 
+#### **battle**
+- `PATCH /battle/:id_characters/:id_monster`:
+  - Realiza uma batalha.
+---
+
 ## Tecnologias Utilizadas
 - **Node.js**: Back-end.
 - **TypeScript**: Tipagem estática e boas práticas.
