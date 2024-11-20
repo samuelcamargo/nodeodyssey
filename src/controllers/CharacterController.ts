@@ -5,6 +5,7 @@ import { AppDataSource } from "../data-source";
 import { Character } from "../entities/Character";
 import { Role } from "../enum/RoleEnum"
 import { User } from "../entities/User";
+import { promises } from "dns";
 
 const userRepository = AppDataSource.getRepository(Character);
 
@@ -12,12 +13,12 @@ export const getCharacters = async (req: Request, res: Response): Promise<void> 
   try {
     const characterRepository = AppDataSource.getRepository(Character);
     const characters = await characterRepository.find({
-      relations: ["user"], // Carrega o relacionamento com User
+      relations: ["user","bagItems"], // Carrega o relacionamento com User
     });
 
     res.json(characters);
   } catch (error) {
-    console.error(error);
+    //console.error(error);
     res.status(500).json({ message: "Error fetching characters" });
   }
 };
@@ -30,7 +31,7 @@ export const getCharactersById = async (req: Request, res: Response): Promise<vo
     const characterRepository = AppDataSource.getRepository(Character);
     const character = await characterRepository.findOne({
       where: { id: parseInt(id) },
-      relations: ["user"], // Carrega o relacionamento com User
+      relations: ["user","bagItems"], // Carrega o relacionamento com User
     });
 
     if (!character) {
@@ -40,7 +41,7 @@ export const getCharactersById = async (req: Request, res: Response): Promise<vo
 
     res.json(character);
   } catch (error) {
-    console.error(error);
+    //console.error(error);
     res.status(500).json({ message: "Error fetching character" });
   }
 };
@@ -83,13 +84,13 @@ export const createCharacters = async (req: Request, res: Response): Promise<voi
 
     res.status(201).json(character);
   } catch (error) {
-    console.error(error);
+    //console.error(error);
     res.status(500).json({ message: "Error creating character" });
   }
 };
 
 export const giveExperience = async (req: Request, res: Response): Promise<void> => {
-  const { id_user, exp, gold } = req.params; // ID do personagem e experiência como parâmetros
+  const { id_user, exp} = req.params; // ID do personagem e experiência como parâmetros
 
   try {
     // Validação dos parâmetros
@@ -107,12 +108,11 @@ export const giveExperience = async (req: Request, res: Response): Promise<void>
     const ormRepository = AppDataSource.getRepository(Character);
     const characterRepository = new TypeORMCharacterRepository(ormRepository);
     const giveExperienceToCharacter = new GiveExperienceToCharacter(characterRepository);
-
     const updatedCharacter = await giveExperienceToCharacter.execute(Number(id_user), Number(exp));
 
     res.json(updatedCharacter);
   } catch (error: any) {
-    console.error(error);
+    //console.error(error);
     res.status(400).json({ message: error.message });
   }
 };

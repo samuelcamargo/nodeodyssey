@@ -47,10 +47,7 @@ export class BagCharacter {
   })
   itemType!: string;
 
-  @Column({ nullable: false })
+  @Column({type: "int"})
   id_character!: number;
 
-  @ManyToOne(() => Character, (character) => character.bagItems) // Relacionamento N-1
-  @JoinColumn({ name: "id_character" }) // Chave estrangeira
-  character!: Character;
 }

@@ -1,6 +1,6 @@
 import { IItems } from "../interfaces/Items";
 
-export class itensRepository {
+export class ItensRepository {
   static getAll() {
     throw new Error("Method not implemented.");
   }

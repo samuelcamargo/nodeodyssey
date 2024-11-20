@@ -5,7 +5,7 @@ export class TypeORMCharacterRepository {
   constructor(private ormRepository: Repository<Character>) {}
 
   async findById(id: number): Promise<Character | null> {
-    return this.ormRepository.findOne({ where: { id } });
+    return this.ormRepository.findOne({ where: { id }});
   }
 
   async save(character: Character): Promise<Character> {

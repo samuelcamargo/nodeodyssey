@@ -1,3 +1,4 @@
+import { Character } from '../entities/Character';
 export interface IItems {
     id?: number;
     name: string;
@@ -7,4 +8,5 @@ export interface IItems {
     max_health: number;
     agility: number;
     itemType: string;
+    id_character?: number;
 }
