@@ -6,6 +6,9 @@ export class LevelUpService {
     guerreiro: { attack: 5, defense: 10, health: 50, agility: 3 },
     mago: { attack: 12, defense: 2, health: 25, agility: 5 },
     arqueiro: { attack: 15, defense: 3, health: 30, agility: 8 },
+    asassino: { attack: 18, defense: 2, health: 25, agility: 10 },
+    bardo: { attack: 6, defense: 7, health: 35, agility: 5 },
+    Barbaro: { attack: 15, defense: 6, health: 35, agility: 4 },
   };
 
   // Função para calcular o XP necessário para o próximo nível
