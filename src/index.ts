@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes";
 import characterRoutes from "./routes/characterRoutes";
 import battleRoutes from "./routes/battleRoutes";
+import shopRoutes from "./routes/shopRoutes";
 import { AppDataSource } from "./data-source";
 
 dotenv.config();
@@ -19,6 +20,7 @@ AppDataSource.initialize()
     app.use("/users", userRoutes);
     app.use("/characters", characterRoutes);
     app.use("/battle", battleRoutes);
+    app.use("/shop", shopRoutes);
 
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`);
