@@ -37,8 +37,6 @@ export class dropSystemService {
         droppedItems.push(newItem);
       }
     }
-
-    console.log(droppedItems); // Apenas para debug
     return droppedItems;
   }
 }

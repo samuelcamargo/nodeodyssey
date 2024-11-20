@@ -2,6 +2,7 @@ import { Character } from "../entities/Character";
 import { IMonster } from "../interfaces/Monster";
 import { dropSystemService } from "./dropSystemService";
 import { ExperienceService } from "./ExperienceService";
+import { GoldService } from "./goldService";
 
 export class BattleSystem {
     static async resolveBattle(
@@ -38,6 +39,7 @@ export class BattleSystem {
         // Determinar o vencedor e atribuir experiência se o personagem vencer
         if (characterState.health > 0) {
             ExperienceService.addExperience(characterState, monsterState.experienceGiven);
+            GoldService.addgold(characterState,monsterState.goldGiven);
             const droppedItems = await dropSystemService.drop(character,1);
             
             return {
