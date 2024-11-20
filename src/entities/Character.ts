@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { Role } from "../enum/RoleEnum";
 import { User } from "./User";
+import { BagCharacter } from "./BagCharacter";
 
 @Entity()
 export class Character {
@@ -65,5 +66,8 @@ export class Character {
   @ManyToOne(() => User, (user) => user.characters, { eager: true })
   @JoinColumn({ name: "id_user" })
   user!: User;
+
+  @OneToMany(() => BagCharacter, (bagItem: BagCharacter) => bagItem.character, { cascade: true })
+  bagItems!: BagCharacter[];
 
 }

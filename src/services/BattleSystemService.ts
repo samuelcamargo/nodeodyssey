@@ -1,12 +1,13 @@
 import { Character } from "../entities/Character";
 import { IMonster } from "../interfaces/Monster";
+import { dropSystemService } from "./dropSystemService";
 import { ExperienceService } from "./ExperienceService";
 
 export class BattleSystem {
-    static resolveBattle(
+    static async resolveBattle(
         character: Character,
         monster: IMonster
-    ): { winner: string; character: Character; monster: IMonster } {
+    ): Promise<{ winner: string; character: Character; monster: IMonster; drops: any[] }> {
         // Criar cópias para manipulação durante a batalha
         const characterState: Character = {
             ...character,
@@ -37,16 +38,20 @@ export class BattleSystem {
         // Determinar o vencedor e atribuir experiência se o personagem vencer
         if (characterState.health > 0) {
             ExperienceService.addExperience(characterState, monsterState.experienceGiven);
+            const droppedItems = await dropSystemService.drop(character,1);
+            
             return {
                 winner: "character",
                 character: characterState,
                 monster: monsterState,
+                drops: droppedItems,
             };
         } else {
             return {
                 winner: "monster",
                 character: characterState,
                 monster: monsterState,
+                drops: [],
             };
         }
     }

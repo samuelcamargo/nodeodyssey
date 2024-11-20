@@ -31,7 +31,7 @@ export const battle = async (req: Request, res: Response): Promise<any> => {
     }
 
     // Resolver a batalha
-    const result = BattleSystem.resolveBattle(character, monster);
+    const result = await BattleSystem.resolveBattle(character, monster);
 
     // Atualizar o personagem caso ele vença
     if (result.winner === 'character') {
@@ -99,7 +99,7 @@ export const battleRandon = async (req: Request, res: Response): Promise<any> =>
     }
 
     // Resolver a batalha
-    const result = BattleSystem.resolveBattle(character, monster);
+    const result = await BattleSystem.resolveBattle(character, monster);
 
     // Atualizar o personagem caso ele vença
     if (result.winner === 'character') {
