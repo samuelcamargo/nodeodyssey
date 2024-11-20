@@ -32,7 +32,6 @@ export const battle = async (req: Request, res: Response): Promise<any> => {
 
     // Resolver a batalha
     const result = await BattleSystem.resolveBattle(character, monster);
-
     // Atualizar o personagem caso ele vença
     if (result.winner === 'character') {
       await characterRepository.save(result.character);

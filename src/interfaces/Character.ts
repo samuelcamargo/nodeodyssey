@@ -11,4 +11,12 @@ export interface ICharacter {
     agility: number;
     role: string;
     id_user: number; // Relacione sempre com o User
+    weapon_id?: number;
+    armor_id?: number;
+    helmet_id?: number;
+    boots_id?: number;
+    pants_id?: number;
+    ring_1_id?: number;
+    ring_2_id?: number;
+    amulet_id?: number;
 }

@@ -4,6 +4,7 @@ import userRoutes from "./routes/userRoutes";
 import characterRoutes from "./routes/characterRoutes";
 import battleRoutes from "./routes/battleRoutes";
 import shopRoutes from "./routes/shopRoutes";
+import itemRoutes from "./routes/itemRoutes";
 import { AppDataSource } from "./data-source";
 
 dotenv.config();
@@ -15,15 +16,16 @@ app.use(express.json());
 
 AppDataSource.initialize()
   .then(() => {
-    console.log("Database connected");
+    //console.log("Database connected");
 
     app.use("/users", userRoutes);
     app.use("/characters", characterRoutes);
     app.use("/battle", battleRoutes);
     app.use("/shop", shopRoutes);
+    app.use("/item",itemRoutes);
 
     app.listen(PORT, () => {
-      console.log(`Server running at http://localhost:${PORT}`);
+      //console.log(`Server running at http://localhost:${PORT}`);
     });
   })
   .catch((error) => console.error("Error during Data Source initialization:", error));

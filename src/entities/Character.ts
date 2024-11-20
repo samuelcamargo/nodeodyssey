@@ -73,7 +73,31 @@ export class Character {
   @JoinColumn({ name: "id_user" })
   user!: User;
 
-  @OneToMany(() => BagCharacter, (bagItem: BagCharacter) => bagItem.character, { cascade: true })
-  bagItems!: BagCharacter[];
+  @OneToMany(() => BagCharacter, (bagItem) => bagItem.id_character)
+  bagItems!: BagCharacter;
+
+  @Column({type: "int",default:0})
+  weapon_id!: number
+
+  @Column({type: "int",default:0})
+  armor_id!: number
+
+  @Column({type: "int",default:0})
+  helmet_id!: number
+
+  @Column({type: "int",default:0})
+  boots_id!: number
+
+  @Column({type: "int",default:0})
+  pants_id!: number
+
+  @Column({type: "int",default:0})
+  ring_1_id!: number
+
+  @Column({type: "int",default:0})
+  ring_2_id!: number
+
+  @Column({type: "int",default:0})
+  amulet_id!: number
 
 }

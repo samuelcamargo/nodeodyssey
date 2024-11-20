@@ -1,19 +1,72 @@
-import { Character } from "../entities/Character";
+import { BagCharacter } from '../entities/BagCharacter';
+import { Character } from '../entities/Character';
 import { IMonster } from "../interfaces/Monster";
 import { dropSystemService } from "./dropSystemService";
 import { ExperienceService } from "./ExperienceService";
 import { GoldService } from "./goldService";
+import { BagCharacterRepository } from '../repositories/BagCharacterRepository';
 
 export class BattleSystem {
+
+
+    static async calculateAttributes(character: Character): Promise<Character> {
+
+        const bagRepo = new BagCharacterRepository;
+        const bagItems = await bagRepo.getAll(character.id);
+
+        // Validar se os itens da bag estão carregados
+        if (!bagItems || !Array.isArray(bagItems)) {
+            throw new Error("Bag items are not loaded or invalid.");
+        }
+    
+        // Lista de IDs de itens equipados
+        const equippedItemsIds = [
+            character.weapon_id,
+            character.armor_id,
+            character.helmet_id,
+            character.boots_id,
+            character.pants_id,
+            character.ring_1_id,
+            character.ring_2_id,
+            character.amulet_id,
+        ].filter(id => id); // Filtrar apenas IDs válidos
+    
+        // Filtrar itens equipados presentes na bag do personagem
+        const equippedItems = bagItems.filter(item =>
+            equippedItemsIds.includes(item.id)
+        );
+    
+        // Inicializar os atributos do personagem
+        const updatedCharacter: Character = {
+            ...character,
+            attack: character.attack || 0,
+            defense: character.defense || 0,
+            health: character.health || 0,
+            agility: character.agility || 0,
+        };
+    
+        // Somar os atributos dos itens equipados
+        for (const item of equippedItems) {
+            updatedCharacter.attack += item.attack || 0;
+            updatedCharacter.defense += item.defense || 0;
+            updatedCharacter.max_health += item.max_health || 0;
+            updatedCharacter.agility += item.agility || 0;
+        }
+    
+        return updatedCharacter;
+    }
+
     static async resolveBattle(
         character: Character,
         monster: IMonster
     ): Promise<{ winner: string; character: Character; monster: IMonster; drops: any[] }> {
-        // Criar cópias para manipulação durante a batalha
-        const characterState: Character = {
-            ...character,
-            id_user: character.id_user || 0, // Garantir que id_user seja definido
-        };
+
+        const characterOriginal = character;
+
+        const characterState = await this.calculateAttributes(character);
+
+        //const characterState = character;
+
         const monsterState: IMonster = { ...monster };
 
         // Determinar quem ataca primeiro com base na agilidade
@@ -36,12 +89,24 @@ export class BattleSystem {
             }
         }
 
+        //console.log(characterState);
+
         // Determinar o vencedor e atribuir experiência se o personagem vencer
         if (characterState.health > 0) {
+             // RESET EQUIPES TO SAVE
+             characterState.agility = characterOriginal.agility;
+             characterState.attack = characterOriginal.attack;
+             characterState.health = characterState.health;
+             characterState.defense = characterOriginal.defense;
+             characterState.max_health = characterOriginal.max_health;
+
             ExperienceService.addExperience(characterState, monsterState.experienceGiven);
             GoldService.addgold(characterState,monsterState.goldGiven);
-            const droppedItems = await dropSystemService.drop(character,1,monsterState.level);
-            
+
+            //console.log(characterState);
+
+            const droppedItems = await dropSystemService.drop(characterState,1,monsterState.level);
+
             return {
                 winner: "character",
                 character: characterState,

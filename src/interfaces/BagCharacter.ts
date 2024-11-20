@@ -1,3 +1,4 @@
+import { Character } from '../entities/Character';
 export interface IBagCharacter {
     id?: number; // Pode ser opcional se o Character for novo
     name: string;
@@ -7,5 +8,5 @@ export interface IBagCharacter {
     max_health: number; // vida maxima
     agility: number;
     itemType: string;
-    id_character: number; // Relacione sempre com o User
+    id_character?: number;
 }
