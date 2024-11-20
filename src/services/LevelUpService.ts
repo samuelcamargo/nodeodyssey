@@ -1,12 +1,11 @@
-import { Character } from "../entities/Character";
 import { ICharacter } from "../interfaces/Character";
 
 export class LevelUpService {
   // Regras de crescimento por classe
   static classModifiers = {
-    guerreiro: { attack: 5, defense: 4, health: 10, agility: 2 },
-    mago: { attack: 7, defense: 2, health: 5, agility: 4 },
-    arqueiro: { attack: 5, defense: 3, health: 7, agility: 6 },
+    guerreiro: { attack: 5, defense: 10, health: 50, agility: 3 },
+    mago: { attack: 12, defense: 2, health: 25, agility: 5 },
+    arqueiro: { attack: 15, defense: 3, health: 30, agility: 8 },
   };
 
   // Função para calcular o XP necessário para o próximo nível

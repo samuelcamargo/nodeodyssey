@@ -1,13 +1,11 @@
-export interface ICharacter {
+export interface IBagCharacter {
     id?: number; // Pode ser opcional se o Character for novo
     name: string;
     level: number;
-    experience: number;
     attack: number;
     defense: number;
-    health: number; // vida atual
     max_health: number; // vida maxima
     agility: number;
-    role: string;
-    id_user: number; // Relacione sempre com o User
+    itemType: string;
+    id_character: number; // Relacione sempre com o User
 }
