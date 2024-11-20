@@ -5,7 +5,6 @@ import { AppDataSource } from "../data-source";
 import { Character } from "../entities/Character";
 import { Role } from "../enum/RoleEnum"
 import { User } from "../entities/User";
-import { format } from "path";
 
 const userRepository = AppDataSource.getRepository(Character);
 
