@@ -54,6 +54,12 @@ export class Character {
   agility!: number;
 
   @Column({
+    type: "int",
+    default:100
+  })
+  gold!: number;
+
+  @Column({
     type: "text",
     enum: Role,
     default: Role.Guerreiro,

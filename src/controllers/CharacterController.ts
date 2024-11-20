@@ -90,7 +90,7 @@ export const createCharacters = async (req: Request, res: Response): Promise<voi
 };
 
 export const giveExperience = async (req: Request, res: Response): Promise<void> => {
-  const { id_user, exp } = req.params; // ID do personagem e experiência como parâmetros
+  const { id_user, exp, gold } = req.params; // ID do personagem e experiência como parâmetros
 
   try {
     // Validação dos parâmetros

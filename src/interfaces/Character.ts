@@ -3,6 +3,7 @@ export interface ICharacter {
     name: string;
     level: number;
     experience: number;
+    gold: number;
     attack: number;
     defense: number;
     health: number; // vida atual

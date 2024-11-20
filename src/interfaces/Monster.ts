@@ -7,4 +7,5 @@ export interface IMonster {
     health: number;
     agility: number;
     experienceGiven: number;
+    goldGiven: number;
 }  
