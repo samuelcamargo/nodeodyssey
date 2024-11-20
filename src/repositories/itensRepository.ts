@@ -69,4 +69,9 @@ export class itensRepository {
   public getAll(): IItems[] {
     return this.items; // Retorna o array de itens
   }
+
+  // Implementa o método getAll para retornar todos os itens
+  public getAllMaxLevel(maxLevel: number): IItems[] {
+    return this.items.filter(item => item.level <= maxLevel + 2);
+  }
 }
