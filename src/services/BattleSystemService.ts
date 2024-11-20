@@ -40,7 +40,7 @@ export class BattleSystem {
         if (characterState.health > 0) {
             ExperienceService.addExperience(characterState, monsterState.experienceGiven);
             GoldService.addgold(characterState,monsterState.goldGiven);
-            const droppedItems = await dropSystemService.drop(character,1);
+            const droppedItems = await dropSystemService.drop(character,1,monsterState.level);
             
             return {
                 winner: "character",

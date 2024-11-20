@@ -4,13 +4,13 @@ import { BagCharacterRepository } from "../repositories/BagCharacterRepository";
 import { Character } from "../entities/Character";
 
 export class dropSystemService {
-  static async drop(character: Character, qtdItem: number = 1): Promise<BagCharacter[]> {
+  static async drop(character: Character, qtdItem: number = 1, monsterLevel: number): Promise<BagCharacter[]> {
     const droppedItems: BagCharacter[] = [];
     const itemRepo = new itensRepository();
     const bagRepo = new BagCharacterRepository();
 
     // Obtém todos os itens disponíveis
-    const items = itemRepo.getAll();
+    const items = itemRepo.getAllMaxLevel(monsterLevel);
 
     for (let i = 0; i < qtdItem; i++) {
       const chance = Math.random(); // Chance de drop (por exemplo, 30%)
