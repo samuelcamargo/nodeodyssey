@@ -3,7 +3,7 @@
 
 ### Descrição
 NodeOdyssey é um RPG básico, desenvolvido com **Node.js**, **TypeScript**, e **TypeORM**, usando **SQLite** como banco de dados. 
-O projeto inclui a implementação de entidades, relacionamentos e endpoints RESTful para manipulação de personagens e usuários.
+O projeto inclui a implementação de entidades, relacionamentos e endpoints RESTful para manipulação de personagens, usuários, itens e poções.
 
 ---
 
@@ -17,8 +17,22 @@ O projeto inclui a implementação de entidades, relacionamentos e endpoints RES
 - **User**:
   - Atributos como `name`, `email` e `password`.
   - Relacionado a `Character` via `@OneToMany`.
+- **BagCharacter**:
+  - Inventário onde são armazenados os itens obtidos pelos personagens após batalhas.
+- **Potion**:
+  - Poções que os personagens podem comprar ou utilizar para recuperar vida.
 
-### 2. Endpoints Desenvolvidos
+### 2. Estruturas Adicionadas
+- Sistema de drop de itens:
+  - Implementado um sistema de probabilidade para obter itens após batalhas.
+  - Itens são armazenados diretamente no inventário (`BagCharacter`) do personagem.
+- Poções:
+  - Balanceamento de valores de recuperação de vida e custo.
+  - Sistema para utilização de poções respeitando o limite máximo de vida (`max_health`).
+
+---
+
+### 3. Endpoints Desenvolvidos
 
 #### **Characters**
 - `POST /characters`:
@@ -39,11 +53,17 @@ O projeto inclui a implementação de entidades, relacionamentos e endpoints RES
 - `GET /users/:id`:
   - Busca um usuário específico pelo ID (excluindo o campo `password`).
 
----
-
-#### **battle**
+#### **Battles**
 - `PATCH /battle/:id_characters/:id_monster`:
   - Realiza uma batalha.
+  - Implementado sistema de drop de itens.
+
+#### **Potions**
+- `POST /potions/use`:
+  - Usa uma poção para recuperar a vida do personagem, respeitando o limite máximo de vida.
+- `GET /potions`:
+  - Lista todas as poções disponíveis para compra.
+
 ---
 
 ## Tecnologias Utilizadas
@@ -58,7 +78,7 @@ O projeto inclui a implementação de entidades, relacionamentos e endpoints RES
 
 ## Próximos Passos
 1. Implementar autenticação de usuários com **JWT**.
-2. Adicionar mais funcionalidades aos personagens, como habilidades ou itens.
+2. Adicionar mais funcionalidades aos personagens, como habilidades ou itens raros.
 3. Melhorar o tratamento de erros e adicionar testes unitários.
 4. Criar um front-end básico para interação com a API.
 
@@ -133,6 +153,8 @@ Exemplo de endpoints disponíveis:
 - **GET /characters**: Lista todos os personagens.
 - **POST /characters**: Cria um novo personagem.
 - **PATCH /characters/:id/:exp**: Atualiza a experiência de um personagem.
+- **POST /potions/use**: Usa uma poção.
+- **GET /potions**: Lista as poções disponíveis.
 
 ---
 
