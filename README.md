@@ -4,6 +4,7 @@
 ### Descrição
 NodeOdyssey é um RPG básico, desenvolvido com **Node.js**, **TypeScript**, e **TypeORM**, usando **SQLite** como banco de dados. 
 O projeto inclui a implementação de entidades, relacionamentos e endpoints RESTful para manipulação de personagens, usuários, itens e poções.
+Todos os DIREITOS Reservados a Samuel Camargo.
 
 ---
 
