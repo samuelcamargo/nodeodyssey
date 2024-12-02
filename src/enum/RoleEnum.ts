@@ -2,7 +2,7 @@ export enum Role {
   Guerreiro = "guerreiro",
   Mago = "mago",
   Arqueiro = "arqueiro",
-  Asassino = "asassino",
+  AsSassino = "assassino",
   Bardo = "bardo",
-  Barbaro = "Barbaro",
+  Barbaro = "barbaro",
 }  
